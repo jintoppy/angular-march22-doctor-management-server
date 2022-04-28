@@ -25,17 +25,16 @@ export class DoctorsController {
   }
 
   @Roles(Role.ADMIN, Role.USER)
+  @Get('specializations')
+  getSpecializations() {
+    return this.doctorsService.getSpecializations();
+  }
+
+  @Roles(Role.ADMIN, Role.USER)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.doctorsService.findOne(+id);
   }
-
-  @Roles(Role.ADMIN, Role.USER)
-  @Get('specializations')
-  getSpecializations() {
-    return ['Physician', 'Neuro Surgeon', 'Paediatrician'];
-  }
-
 
 
   @Roles(Role.ADMIN, Role.USER)
