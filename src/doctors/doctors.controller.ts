@@ -31,6 +31,14 @@ export class DoctorsController {
   }
 
   @Roles(Role.ADMIN, Role.USER)
+  @Get('specializations')
+  getSpecializations() {
+    return ['Physician', 'Neuro Surgeon', 'Paediatrician'];
+  }
+
+
+
+  @Roles(Role.ADMIN, Role.USER)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDoctorDto: UpdateDoctorDto) {
     return this.doctorsService.update(+id, updateDoctorDto);

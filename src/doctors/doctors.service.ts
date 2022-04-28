@@ -24,6 +24,10 @@ export class DoctorsService {
     return this.doctors.find(doctor => doctor.id ===  id);
   }
 
+  getSpecializations(){
+    return ['Physician', 'Neuro Surgeon', 'Paediatrician']
+  }
+
   update(id: number, updateDoctorDto: UpdateDoctorDto) {
     return `This action updates a #${id} doctor`;
   }
