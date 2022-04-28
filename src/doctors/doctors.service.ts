@@ -29,10 +29,30 @@ export class DoctorsService {
   }
 
   update(id: number, updateDoctorDto: UpdateDoctorDto) {
-    return `This action updates a #${id} doctor`;
+    const currentUser = this.findOne(id);
+    if(currentUser){
+      const updatedUser = {
+        ...currentUser,
+        ...updateDoctorDto
+      };
+      this.doctors.forEach(user => {
+        if(id == user.id){
+          user = {
+            ...user,
+            ...updateDoctorDto
+          };
+        };
+      });
+      return updatedUser;
+    }
+    return {
+      error: 'No user found'
+    }
+    
   }
 
   remove(id: number) {
-    return `This action removes a #${id} doctor`;
+    this.doctors = this.doctors.filter(doctor => doctor.id != id);
+    return this.doctors;
   }
 }
