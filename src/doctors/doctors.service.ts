@@ -21,7 +21,7 @@ export class DoctorsService {
   }
 
   findOne(id: number) {
-    return this.doctors.find(doctor => doctor.id ===  id);
+    return this.doctors.find(doctor => doctor.id ==  id);
   }
 
   getSpecializations(){
@@ -35,13 +35,14 @@ export class DoctorsService {
         ...currentUser,
         ...updateDoctorDto
       };
-      this.doctors.forEach(user => {
+      this.doctors = this.doctors.map(user => {
         if(id == user.id){
-          user = {
+          return {
             ...user,
             ...updateDoctorDto
           };
         };
+        return user;
       });
       return updatedUser;
     }
