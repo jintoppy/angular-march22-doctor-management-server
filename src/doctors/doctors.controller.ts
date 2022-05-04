@@ -31,10 +31,16 @@ export class DoctorsController {
   }
 
   @Roles(Role.ADMIN, Role.USER)
+  @Get('summary')
+  getSummary() {
+    return this.doctorsService.getSummary();
+  }
+
+  @Roles(Role.ADMIN, Role.USER)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.doctorsService.findOne(+id);
-  }
+  }  
 
 
   @Roles(Role.ADMIN, Role.USER)

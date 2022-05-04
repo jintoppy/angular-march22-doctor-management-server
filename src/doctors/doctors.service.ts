@@ -24,6 +24,19 @@ export class DoctorsService {
     return this.doctors.find(doctor => doctor.id ==  id);
   }
 
+  getSummary(){
+    const category = this.doctors.reduce((acc, doctor) => {
+      acc[doctor.specialization] = acc[doctor.specialization] || 0;
+      acc[doctor.specialization]++;
+      return acc;
+    }, {})
+    return {
+      totalCount: this.doctors.length,
+      category: category
+    };
+
+  }
+
   getSpecializations(){
     return ['Physician', 'Neuro Surgeon', 'Paediatrician']
   }
